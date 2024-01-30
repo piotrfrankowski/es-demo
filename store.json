@@ -1,1 +1,1 @@
-[{"uuid":"d557b657-259c-422c-91d8-64e9d92dbbb7","ts":"2024-01-30T10:06:20.661Z","topic":"paymentDone","amount":3,"recepient":"0x1","token":"ETH","user":"0x2","received":2.97,"fee":0.03},{"uuid":"9525570f-8088-44f0-aa33-eacb0ee910c3","ts":"2024-01-30T10:06:28.180Z","topic":"paymentDone","amount":3,"recepient":"0x1","token":"ETH","user":"0x2","received":2.97,"fee":0.03},{"uuid":"2784407d-3a85-404f-97c4-a395486f1c84","ts":"2024-01-30T10:06:39.208Z","topic":"paymentDone","amount":3,"recepient":"0x1","token":"ETH","user":"0x2","received":2.97,"fee":0.03}]
+[]
