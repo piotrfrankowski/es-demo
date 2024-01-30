@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    // @tsconfig/strictest
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+
+    // "isolatedModules": true,
+
+    "checkJs": true,
+
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // @tsconfig/node18
+    "lib": ["es2023"],
+    "module": "node16",
+    "target": "es2022",
+    "moduleResolution": "node16",
+
+    // Other
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "types": ["node"],
+    // TODO: this will only be feasible once we convert all modules to ESM
+    "verbatimModuleSyntax": false
+  },
+  "ts-node": {
+    "files": true
+  },
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "@rhinofi/tsconfig Node18 Strictest",
+  "_version": "1.0.0"
+}
