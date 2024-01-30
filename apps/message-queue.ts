@@ -1,10 +1,8 @@
 import { writeFileSync, readFileSync } from 'fs'
-import { EventEmitter } from 'node:events'
 import { CommandHandler } from '../command-handlers/types'
 
 export const messageQueueFactory = (commandHandlers: Record<string, CommandHandler>) => () => {
-  const eventBus = new EventEmitter()
-  const interval = setInterval(() => {
+  setInterval(() => {
     try {
       const events = JSON.parse(readFileSync('./bus.json', 'utf-8'))
       const handledEventsUuids = []

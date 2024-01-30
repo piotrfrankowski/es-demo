@@ -1,10 +1,7 @@
 import { eventBusFactory } from '../event-bus'
 import { eventStoreFactory } from '../event-store'
 import { readRepositoryFactory } from '../read-repository'
-import { queryHandlerFactory } from '../query-handler'
 import { messageQueueFactory } from './message-queue'
-import { serverFactory } from '../server'
-import { payCommandHandlerFactory } from '../command-handlers/pay'
 import { takeFeeCommandHandlerFactory } from '../command-handlers/takeFee'
 import { finalizeCommandHandlerFactory } from '../command-handlers/finalizeWithError'
 

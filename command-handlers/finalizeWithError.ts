@@ -1,6 +1,5 @@
-import { v4 } from 'uuid'
 import { promisify } from 'util'
-import { Event, EventBus } from '../event-bus'
+import { EventBus } from '../event-bus'
 import { ReadRepository } from '../read-repository'
 import { CommandHandler, PaymentDoneEvent } from './types'
 const wait = promisify(setTimeout)
