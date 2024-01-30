@@ -13,7 +13,7 @@
     "forceConsistentCasingInFileNames": true,
 
     // @tsconfig/node18
-    "lib": ["es2023"],
+    "lib": ["es2023", "dom"],
     "module": "node16",
     "target": "es2022",
     "moduleResolution": "node16",
