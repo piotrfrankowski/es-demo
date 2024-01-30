@@ -1,4 +1,4 @@
-import { PaymentDoneEvent } from './command-handler'
+import { PaymentDoneEvent } from './command-handlers/types'
 import { ReadRepository } from './read-repository'
 
 export type QueryHandler = {

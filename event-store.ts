@@ -1,5 +1,7 @@
 import { writeFileSync, readFileSync } from 'fs'
 import { Event } from './event-bus'
+import { ReadRepository } from './read-repository'
+import { PaymentDoneEvent } from './command-handlers/types'
 
 export type EventStore = {
   save: <T extends Event>(event: T) => void
@@ -7,9 +9,17 @@ export type EventStore = {
   close: () => void
 }
 
-export const eventStoreFactory = (): EventStore => {
+export const eventStoreFactory = (readRepository?: ReadRepository): EventStore => {
   const persisted = readFileSync('./store.json').toString()
   const storage: Event[] = persisted ? JSON.parse(persisted) : []
+  if (persisted && readRepository) {
+    storage.filter(event => event.topic === 'paymentDone').forEach((event) => {
+      readRepository.save(event as PaymentDoneEvent)
+    })
+  }
+  const interval = setInterval(() => {
+    writeFileSync('./store.json', JSON.stringify(storage))
+  }, 500)
 
   const save = <T extends Event>(event: T) => {
     storage.push(event)
@@ -21,6 +31,7 @@ export const eventStoreFactory = (): EventStore => {
 
   const close = () => {
     writeFileSync('./store.json', JSON.stringify(storage))
+    clearInterval(interval)
   }
 
   return {

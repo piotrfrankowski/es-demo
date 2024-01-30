@@ -10,7 +10,9 @@
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "start": "ts-node app.ts",
+    "start-transfer": "ts-node apps/transfer-handler.ts",
+    "start-handler": "ts-node apps/handler.ts",
+    "start-server": "ts-node apps/server.ts",
     "db": "ts-node db-client.ts"
   },
   "dependencies": {

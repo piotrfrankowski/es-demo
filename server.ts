@@ -1,9 +1,9 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { CommandHandler } from './command-handler'
+import { CommandHandler, PayEventDto } from './command-handlers/types'
 import { QueryHandler } from './query-handler'
 
-export const serverFactory = (commandHandler: CommandHandler, queryHandler: QueryHandler) => {
+export const serverFactory = (payCommandHandler: CommandHandler<PayEventDto>, queryHandler: QueryHandler) => {
   const app = express()
   app.use(bodyParser.json())
 
@@ -37,7 +37,7 @@ export const serverFactory = (commandHandler: CommandHandler, queryHandler: Quer
 
   app.post('/pay', async (req, res) => {
     const command = req.body
-    const uuid = await commandHandler.pay(command)
+    const uuid = await payCommandHandler.handle(command)
     
     res.json({ uuid })
   })

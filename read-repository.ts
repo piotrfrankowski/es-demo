@@ -1,4 +1,5 @@
-import { PaymentDoneEvent } from './command-handler'
+import { readFileSync, writeFileSync } from 'fs'
+import { PaymentDoneEvent } from './command-handlers/types'
 
 export type ReadRepository = {
   // internal function
@@ -14,9 +15,16 @@ export type ReadRepository = {
 
 export const readRepositoryFactory = (): ReadRepository => {
   // simulated diffent views
-  const byPayer: Record<string, PaymentDoneEvent[]> = {}
-  const byRecepient: Record<string, PaymentDoneEvent[]> = {}
-  const byUuid: Record<string, PaymentDoneEvent> = {}
+  let byPayer: Record<string, PaymentDoneEvent[]> = {}
+  let byRecepient: Record<string, PaymentDoneEvent[]> = {}
+  let byUuid: Record<string, PaymentDoneEvent> = {}
+
+  setInterval(() => {
+    const data = JSON.parse(readFileSync('./read-repo.json', 'utf-8').toString())
+    byPayer = data.byPayer
+    byRecepient = data.byRecepient
+    byUuid = data.byUuid
+  }, 500)
 
   const save = (event: PaymentDoneEvent) => {
     if (!byPayer[event.user]) {
@@ -28,6 +36,11 @@ export const readRepositoryFactory = (): ReadRepository => {
     }
     byRecepient[event.recepient].push(event)
     byUuid[event.uuid] = event
+    writeFileSync('./read-repo.json', JSON.stringify({
+      byPayer,
+      byRecepient,
+      byUuid,
+    }))
   }
 
   const readByPayer = (payer: string) => {
